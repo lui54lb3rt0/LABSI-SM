@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>LABSI_SM</AssemblyName>
-    <Name>LABSI_SM</Name>
-    <RootNamespace>LABSI_SM</RootNamespace>
+    <AssemblyName>LABSI_SM_1</AssemblyName>
+    <Name>LABSI_SM_1</Name>
+    <RootNamespace>LABSI_SM_1</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
