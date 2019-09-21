@@ -19,22 +19,27 @@ void inic()
 	TCCR0A = (2<<COM0A0)|(3<<WGM00);	//Fast PWM non-inverted, modo 3
 	TCCR0B |= (5<<CS00);				//PRESCALER=1024 TIMER enable
 	TIMSK0 |= (1<<TOIE0);				//Overflow interrupt enable
-	OCR0A=0;							//PWM = 0
+	OCR0A=0;							//PWM = 0 
 	
 	
 	/* Timer 1 toggle LED*/
 	TCCR1A = (1 << COM1A0);					// ativar OC1A to toggle led
 	TCCR1B = (1 << CS12) | (1 << WGM12);	// CLKIO/256 (From prescaler) | Mode CTC
-	
-	OCR1A = 31250;	// Total timer ticks para 1Hz      62500
+	TIMSK1 |= (1 << OCIE1A);				// Enable TIMER1
+	OCR1A = 31250;							// Total timer ticks para 1Hz      62500
 
-	TIMSK1 |= (1 << OCIE1A);		// Enable TIMER1
+	/* ADC */
 	
+	ADMUX = (1<<REFS0)|(1<<ADLAR);							// AVcc, align left, ch0
+	ADCSRA = (1<<ADEN)|(1<<ADATE)|(1<<ADIE)|(7<<ADPS0);		// Enable conversion | Adc Auto trigger, Adc interrupt, prescaler 128
+	ADCSRB = (1<<ADTS2);									// TC0 Overflow
 	
 }
 
 int main(void)
 {
 	inic();
-	while(1){}
+	while(1){
+		
+	}
 }
