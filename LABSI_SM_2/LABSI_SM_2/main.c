@@ -1,23 +1,28 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-ISR(TIMER1_COMPA_vect)
+
+
+void ler_ad()
 {
-	//	PORTD = PORTD^0b10000000;		//não é necessário uma vez que temos o pino OC1A a fazer o toggle automático com o timer
+	ADCSRA = ADCSRA | 0b01000000;
+	while ((ADCSRA & (1<<ADSC)) !=0);
+	OCR0A = ADCH;
 }
 
 void inic()
 {
 	DDRB = 0x02;		// Set PB1 as output
 	DDRC = 0x00;
-		
+	DDRD = (1<<DDD6);
+			
 	PORTC = 0xFF;		// PULL-UPS
-	PORTB = 0x00;		// Led off on startup
-	
+
+	PORTD = 0xFF;
 	
 	/* Timer 0 */
-	TCCR0A = (2<<COM0A0)|(3<<WGM00);	//Fast PWM non-inverted, modo 3
-	TCCR0B |= (5<<CS00);				//PRESCALER=1024 TIMER enable
+	TCCR0A = (2<<COM0A0)|(3<<WGM00);	//Toggle OC0A | Fast PWM non-inverted, modo 3
+	TCCR0B |= (2<<CS00);				//PRESCALER=1024 TIMER enable
 	TIMSK0 |= (1<<TOIE0);				//Overflow interrupt enable
 	OCR0A=0;							//PWM = 0 
 	
@@ -30,11 +35,29 @@ void inic()
 
 	/* ADC */
 	
-	ADMUX = (1<<REFS0)|(1<<ADLAR);							// AVcc, align left, ch0
-	ADCSRA = (1<<ADEN)|(1<<ADATE)|(1<<ADIE)|(7<<ADPS0);		// Enable conversion | Adc Auto trigger, Adc interrupt, prescaler 128
+	ADMUX = 0b01100000;//(1<<REFS0)|(1<<ADLAR);							// AVcc, align left, ch0
+	ADCSRA = 0b10000111;//(1<<ADEN)|(1<<ADATE)|(1<<ADIE)|(7<<ADPS0);		// Enable conversion | Adc Auto trigger, Adc interrupt, prescaler 128
 	ADCSRB = (1<<ADTS2);									// TC0 Overflow
 	
+	sei();
+	
 }
+
+ISR(TIMER1_COMPA_vect)
+{
+}
+
+ISR(TIMER0_OVF_vect)
+{
+	ler_ad();
+}
+
+ISR(ADC_vect)
+{
+	//	OCR0A=ADCH;					// valor duty cycle
+}
+
+
 
 int main(void)
 {
