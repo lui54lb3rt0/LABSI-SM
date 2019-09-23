@@ -116,7 +116,7 @@ ISR(ADC_vect)
   ae:	0f 92       	push	r0
   b0:	11 24       	eor	r1, r1
   b2:	8f 93       	push	r24
-	OCR0A=ADCH;					// valor duty cycle
+	OCR0A=ADCH;			// valor duty cycle
   b4:	80 91 79 00 	lds	r24, 0x0079	; 0x800079 <__TEXT_REGION_LENGTH__+0x7e0079>
   b8:	87 bd       	out	0x27, r24	; 39
 }
@@ -148,19 +148,19 @@ void inic()
   d4:	8b b9       	out	0x0b, r24	; 11
 	
 	/* Timer 0 */
-	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;			// 0b10000011;		// Clear OC0A | Fast PWM non-inverted, modo 3
+	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;	// Clear OC0A | Fast PWM 
   d6:	83 e8       	ldi	r24, 0x83	; 131
   d8:	84 bd       	out	0x24, r24	; 36
-	TCCR0B = (1<<CS02) | (1<<CS00);				//		0b00000101		// PRESCALER=1024 TIMER enable
+	TCCR0B = (1<<CS02) | (1<<CS00);						// PRESCALER=1024
   da:	85 e0       	ldi	r24, 0x05	; 5
   dc:	85 bd       	out	0x25, r24	; 37
-	TIMSK0 |= (1<<TOIE0);				// Overflow interrupt enable
+	TIMSK0 |= (1<<TOIE0);								// Overflow interrupt enable
   de:	ee e6       	ldi	r30, 0x6E	; 110
   e0:	f0 e0       	ldi	r31, 0x00	; 0
   e2:	80 81       	ld	r24, Z
   e4:	81 60       	ori	r24, 0x01	; 1
   e6:	80 83       	st	Z, r24
-	OCR0A=0;							// PWM = 0 
+	OCR0A=0;											// PWM = 0 
   e8:	17 bc       	out	0x27, r1	; 39
 	
 	
@@ -176,7 +176,7 @@ void inic()
   f8:	80 81       	ld	r24, Z
   fa:	82 60       	ori	r24, 0x02	; 2
   fc:	80 83       	st	Z, r24
-	OCR1A = 31250;							// Total timer ticks to 1Hz      62500
+	OCR1A = 31250;							// Total timer ticks to 1Hz
   fe:	82 e1       	ldi	r24, 0x12	; 18
  100:	9a e7       	ldi	r25, 0x7A	; 122
  102:	90 93 89 00 	sts	0x0089, r25	; 0x800089 <__TEXT_REGION_LENGTH__+0x7e0089>

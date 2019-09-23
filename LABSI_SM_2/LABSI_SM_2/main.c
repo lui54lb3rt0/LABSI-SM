@@ -20,7 +20,7 @@ ISR(TIMER0_OVF_vect)
 
 ISR(ADC_vect)
 {
-	OCR0A=ADCH;					// valor duty cycle
+	OCR0A=ADCH;			// valor duty cycle
 }
 
 /* Functions */
@@ -34,8 +34,8 @@ void inic()
 	PORTD = 0xFF;		// PULL-UPS and LED
 	
 	/* Timer 0 */
-	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;	// Clear OC0A | Fast PWM non-inverted, modo 3
-	TCCR0B = (1<<CS02) | (1<<CS00);						// PRESCALER=1024 TIMER enable
+	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;	// Clear OC0A | Fast PWM 
+	TCCR0B = (1<<CS02) | (1<<CS00);						// PRESCALER=1024
 	TIMSK0 |= (1<<TOIE0);								// Overflow interrupt enable
 	OCR0A=0;											// PWM = 0 
 	
@@ -44,7 +44,7 @@ void inic()
 	TCCR1A = (1 << COM1A0);					// Enable OC1A to toggle led
 	TCCR1B = (1 << CS12) | (1 << WGM12);	// CLKIO/256 (From prescaler) | Mode CTC
 	TIMSK1 |= (1 << OCIE1A);				// Enable TIMER1
-	OCR1A = 31250;							// Total timer ticks to 1Hz      62500
+	OCR1A = 31250;							// Total timer ticks to 1Hz
 
 	/* ADC */
 	ADMUX = (1<<REFS0)|(1<<ADLAR);							// AVcc | align left | ch0
