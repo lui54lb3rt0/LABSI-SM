@@ -34,10 +34,10 @@ void inic()
 	PORTD = 0xFF;		// PULL-UPS and LED
 	
 	/* Timer 0 */
-	TCCR0A = (2<<COM0A0)|(3<<WGM00);	// Toggle OC0A | Fast PWM non-inverted, modo 3
-	TCCR0B = (2<<CS00);				// PRESCALER=1024 TIMER enable
-	TIMSK0 |= (1<<TOIE0);				// Overflow interrupt enable
-	OCR0A=0;							// PWM = 0 
+	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;	// Clear OC0A | Fast PWM non-inverted, modo 3
+	TCCR0B = (1<<CS02) | (1<<CS00);						// PRESCALER=1024 TIMER enable
+	TIMSK0 |= (1<<TOIE0);								// Overflow interrupt enable
+	OCR0A=0;											// PWM = 0 
 	
 	
 	/* Timer 1 toggle LED*/
