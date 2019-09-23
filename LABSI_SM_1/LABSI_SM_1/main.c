@@ -1,9 +1,17 @@
+/********************************************************
+	Language		:	C
+	Year			:	2019/2020
+	Class			:	LABSI
+	Authors			:	Luï¿½s Silva | Joï¿½o Loureiro
+	E-mail			:	1101420@isep.ipp.pt | 
+*********************************************************/
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
 ISR(TIMER1_COMPA_vect)
 {
-	//	PORTD = PORTD^0b10000000;		//não é necessário uma vez que temos o pino OC1A a fazer o toggle automático com o timer
+	//	PORTD = PORTD^0b10000000;		//nï¿½o ï¿½ necessï¿½rio uma vez que temos o pino OC1A a fazer o toggle automï¿½tico com o timer
 }
 
 void inic()
