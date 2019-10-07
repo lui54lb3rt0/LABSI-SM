@@ -2,7 +2,7 @@
 	Language		:	C
 	Year			:	2019/2020
 	Class			:	LABSI
-	Authors			:	Luís Silva | João Loureiro
+	Authors			:	Luï¿½s Silva | Joï¿½o Loureiro
 	E-mail			:	1101420@isep.ipp.pt | 1131109@isep.ipp.pt
 *********************************************************/
 
