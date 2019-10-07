@@ -20651,20 +20651,6 @@ Luís Silva | João Loureiro</text>
 <wire x1="27.94" y1="157.48" x2="22.86" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="DIR0" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PC0"/>
-<wire x1="198.12" y1="66.04" x2="205.74" y2="66.04" width="0.1524" layer="91"/>
-<label x="200.66" y="66.04" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="DIR1" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PC1"/>
-<wire x1="198.12" y1="63.5" x2="205.74" y2="63.5" width="0.1524" layer="91"/>
-<label x="200.66" y="63.5" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="Q1" gate="G$1" pin="1"/>
@@ -20685,34 +20671,6 @@ Luís Silva | João Loureiro</text>
 <junction x="149.86" y="63.5"/>
 <pinref part="U1" gate="A" pin="PB6"/>
 <wire x1="152.4" y1="60.96" x2="162.56" y2="60.96" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="RXD" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PD0"/>
-<wire x1="198.12" y1="88.9" x2="205.74" y2="88.9" width="0.1524" layer="91"/>
-<label x="200.66" y="88.9" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="TXD" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PD1"/>
-<wire x1="198.12" y1="86.36" x2="205.74" y2="86.36" width="0.1524" layer="91"/>
-<label x="200.66" y="86.36" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="SCL" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PC5"/>
-<wire x1="198.12" y1="53.34" x2="205.74" y2="53.34" width="0.1524" layer="91"/>
-<label x="200.66" y="53.34" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="SDA" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PC4"/>
-<wire x1="198.12" y1="55.88" x2="205.74" y2="55.88" width="0.1524" layer="91"/>
-<label x="200.66" y="55.88" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$11" class="0">
