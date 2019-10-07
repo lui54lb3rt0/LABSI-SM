@@ -20678,7 +20678,10 @@ W = angled&lt;p&gt;
 <part name="SV2" library="con-lstb" library_urn="urn:adsk.eagle:library:162" deviceset="MA06-2" device="" package3d_urn="urn:adsk.eagle:package:8342/1"/>
 <part name="R3" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="1k"/>
 <part name="R4" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="2k"/>
-<part name="P+4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
+<part name="LED2" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="LED" device="3MM" package3d_urn="urn:adsk.eagle:package:15797/1"/>
+<part name="R5" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="R-US_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/2" value="330R"/>
+<part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -20791,8 +20794,19 @@ Luís Silva | João Loureiro</text>
 <attribute name="NAME" x="197.0786" y="153.67" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="192.278" y="153.67" size="1.778" layer="96" rot="R270"/>
 </instance>
-<instance part="P+4" gate="VCC" x="195.58" y="160.02" smashed="yes">
-<attribute name="VALUE" x="193.04" y="157.48" size="1.778" layer="96" rot="R90"/>
+<instance part="GND5" gate="1" x="195.58" y="160.02" smashed="yes" rot="R180">
+<attribute name="VALUE" x="198.12" y="162.56" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="LED2" gate="G$1" x="223.52" y="73.66" smashed="yes" rot="R270">
+<attribute name="NAME" x="218.948" y="70.104" size="1.778" layer="95"/>
+<attribute name="VALUE" x="218.948" y="67.945" size="1.778" layer="96"/>
+</instance>
+<instance part="R5" gate="G$1" x="208.28" y="73.66" smashed="yes" rot="R180">
+<attribute name="NAME" x="212.09" y="72.1614" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="212.09" y="76.962" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="GND6" gate="1" x="231.14" y="73.66" smashed="yes" rot="R90">
+<attribute name="VALUE" x="233.68" y="71.12" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -20908,6 +20922,16 @@ Luís Silva | João Loureiro</text>
 <wire x1="175.26" y1="139.7" x2="180.34" y2="139.7" width="0.1524" layer="91"/>
 <label x="175.26" y="139.7" size="1.778" layer="95"/>
 </segment>
+<segment>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="195.58" y1="157.48" x2="195.58" y2="154.94" width="0.1524" layer="91"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="LED2" gate="G$1" pin="A"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="226.06" y1="73.66" x2="228.6" y2="73.66" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="VCC" class="0">
 <segment>
@@ -20964,11 +20988,6 @@ Luís Silva | João Loureiro</text>
 <pinref part="SV2" gate="1" pin="3"/>
 <wire x1="175.26" y1="137.16" x2="180.34" y2="137.16" width="0.1524" layer="91"/>
 <label x="175.26" y="137.16" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="R4" gate="G$1" pin="1"/>
-<pinref part="P+4" gate="VCC" pin="VCC"/>
-<wire x1="195.58" y1="157.48" x2="195.58" y2="154.94" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -21233,6 +21252,20 @@ Luís Silva | João Loureiro</text>
 <wire x1="147.32" y1="129.54" x2="213.36" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="129.54" x2="213.36" y2="165.1" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="165.1" x2="147.32" y2="165.1" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="R5" gate="G$1" pin="1"/>
+<pinref part="LED2" gate="G$1" pin="C"/>
+<wire x1="218.44" y1="73.66" x2="213.36" y2="73.66" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$16" class="0">
+<segment>
+<pinref part="U1" gate="A" pin="PD6"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="203.2" y1="73.66" x2="198.12" y2="73.66" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
