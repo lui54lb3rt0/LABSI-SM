@@ -20651,20 +20651,6 @@ Luís Silva | João Loureiro</text>
 <wire x1="27.94" y1="157.48" x2="22.86" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="M0" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PB1"/>
-<wire x1="162.56" y1="73.66" x2="157.48" y2="73.66" width="0.1524" layer="91"/>
-<label x="154.94" y="73.66" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="M1" class="0">
-<segment>
-<pinref part="U1" gate="A" pin="PB2"/>
-<wire x1="162.56" y1="71.12" x2="157.48" y2="71.12" width="0.1524" layer="91"/>
-<label x="154.94" y="71.12" size="1.778" layer="95"/>
-</segment>
-</net>
 <net name="DIR0" class="0">
 <segment>
 <pinref part="U1" gate="A" pin="PC0"/>
