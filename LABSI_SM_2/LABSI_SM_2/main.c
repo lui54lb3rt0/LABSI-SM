@@ -10,7 +10,7 @@
 #include <avr/interrupt.h>
 
 /* Interrupts */
-ISR(TIMER1_COMPA_vect)
+ISR(TIMER1_COMPA_vect)	
 {
 }
 
@@ -20,25 +20,25 @@ ISR(TIMER0_OVF_vect)
 
 ISR(ADC_vect)
 {
-	OCR0A=ADCH;			// valor duty cycle
+	OCR0A=ADCH;			// Copy ADCH register to OCR0A to change the duty-cycle of the PWM
 }
 
 /* Functions */
 void inic()
 {
-	DDRB = 0x02;		// Set PB1 as output OC1A
-	DDRC = 0x00;		// Set PORTC as input
-	DDRD = (1<<DDD6);	// Set PD6 as output OC0A
-			
-	PORTC = 0xFF;		// PULL-UPS
-	PORTD = 0xFF;		// PULL-UPS and LED
+	/* Ports configuration */
+	DDRB = 0x02;		// Set PB1 as output OC1A (Pin 15)
+	DDRC = 0x00;		// Set PORTC as input (ADC)
+	DDRD = (1<<DDD6);	// Set PD6 as output OC0A (Pin 12)
+	
+	PORTC = 0xFF;		// PULL-UPS ON
+	PORTD = 0xFF;		// PULL-UPS ON and LED
 	
 	/* Timer 0 */
 	TCCR0A = (1<<COM0A1) | (1<<WGM01) | (1<<WGM00) ;	// Clear OC0A | Fast PWM 
 	TCCR0B = (1<<CS02) | (1<<CS00);						// PRESCALER=1024
 	TIMSK0 |= (1<<TOIE0);								// Overflow interrupt enable
 	OCR0A=0;											// PWM = 0 
-	
 	
 	/* Timer 1 toggle LED*/
 	TCCR1A = (1 << COM1A0);					// Enable OC1A to toggle led
@@ -48,17 +48,17 @@ void inic()
 
 	/* ADC */
 	ADMUX = (1<<REFS0)|(1<<ADLAR);							// AVcc | align left | ch0
-	ADCSRA = (1<<ADEN)|(1<<ADATE)|(1<<ADIE)|(7<<ADPS0);		// Enable conversion | Adc Auto trigger | Adc interrupt | PS 128
-	ADCSRB = (1<<ADTS2);									// TC0 Overflow
+	ADCSRA = (1<<ADEN)|(1<<ADATE)|(1<<ADIE)|(7<<ADPS0);		// Enable conversion | ADC Auto trigger | ADC interrupt | PS 128
+	ADCSRB = (1<<ADTS2);									// TC0 Overflow to start conversion
 	
-	sei();
+	sei();									// Enable interrupts
 }
 
 /* Main code */
 int main(void)
 {
-	inic();
-	while(1){
+	inic();									// Execute Inic function to set the parameters of the uC
+	while(1){								// while loop
 		
 	}
 }
